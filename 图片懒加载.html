@@ -51,6 +51,7 @@
 </body>
 <script>
   function lazyload() {
+    console.log("lazyload", '◀◀◀"lazyload"')
     const imgs = document.getElementsByTagName('img')
     const len = imgs.length
     // 视口的高度
@@ -70,6 +71,7 @@
   }
   
   // 可以使用节流优化一下
+  lazyload()
   window.addEventListener('scroll', lazyload)
 </script>
 </html>

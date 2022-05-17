@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+</body>
+<script>
+  console.log(performance.now(), '1◀◀◀performance.now()')
+  for (let i = 0; i <200 ; i++) {
+  }
+  let lastTime = performance.now()
+  let frame = 0
+  let lastFameTime = performance.now()
+  console.log(performance.now(), '2◀◀◀performance.now()')
+  const loop = function (time) {
+    const now = performance.now()
+    const fs = now - lastFameTime
+    lastFameTime = now
+    const fps = Math.round(1000 / fs)
+    console.log(fps, '◀◀◀fps')
+    frame++
+    if (now > 1000 + lastTime) {
+      const fps = Math.round((frame * 1000) / (now - lastTime))
+      frame = 0
+      lastTime = now
+    }
+    window.requestAnimationFrame(loop)
+  }
+  // loop()
+</script>
+</html>

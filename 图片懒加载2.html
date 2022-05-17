@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<style>
+  div {
+    height: 300vh;
+    width: 90vw;
+    background-color: #BFA;
+  }
+  
+  img {
+    display: block;
+    width: 200px;
+    height: 200px;
+  }
+</style>
+<body>
+<div>
+  <img data-src="http://quuer.cn/img/kn.jpg" src="" alt="">
+  <img data-src="http://quuer.cn/img/kn.jpg" src="" alt="">
+  <img data-src="http://quuer.cn/img/kn.jpg" src="" alt="">
+  <img data-src="http://quuer.cn/img/kn.jpg" src="" alt="">
+  <img data-src="http://quuer.cn/img/kn.jpg" src="" alt="">
+  <img data-src="http://quuer.cn/img/kn.jpg" src="" alt="">
+  <img data-src="http://quuer.cn/img/kn.jpg" src="" alt="">
+  <img data-src="http://quuer.cn/img/kn.jpg" src="" alt="">
+  <img data-src="http://quuer.cn/img/kn.jpg" src="" alt="">
+  <img data-src="http://quuer.cn/img/kn.jpg" src="" alt="">
+  <img data-src="http://quuer.cn/img/kn.jpg" src="" alt="">
+  <img data-src="http://quuer.cn/img/kn.jpg" src="" alt="">
+  <img data-src="http://quuer.cn/img/kn.jpg" src="" alt="">
+  <img data-src="http://quuer.cn/img/kn.jpg" src="" alt="">
+  <img data-src="http://quuer.cn/img/kn.jpg" src="" alt="">
+  <img data-src="http://quuer.cn/img/kn.jpg" src="" alt="">
+  <img data-src="http://quuer.cn/img/kn.jpg" src="" alt="">
+  <img data-src="http://quuer.cn/img/kn.jpg" src="" alt="">
+  <img data-src="http://quuer.cn/img/kn.jpg" src="" alt="">
+  <img data-src="http://quuer.cn/img/kn.jpg" src="" alt="">
+  <img data-src="http://quuer.cn/img/kn.jpg" src="" alt="">
+  <img data-src="http://quuer.cn/img/kn.jpg" src="" alt="">
+  <img data-src="http://quuer.cn/img/kn.jpg" src="" alt="">
+  <img data-src="http://quuer.cn/img/kn.jpg" src="" alt="">
+  <img data-src="http://quuer.cn/img/kn.jpg" src="" alt="">
+  <img data-src="http://quuer.cn/img/kn.jpg" src="" alt="">
+  <img data-src="http://quuer.cn/img/kn.jpg" src="" alt="">
+  <img data-src="http://quuer.cn/img/kn.jpg" src="" alt="">
+</div>
+</body>
+<script>
+  const imgs = document.querySelectorAll('img[data-src]')
+  const config = {
+    rootMargin: '0px',
+    threshold: 0
+  }
+  let observer = new IntersectionObserver((entries, self) => {
+    console.log(entries, '◀◀◀entries')
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        let img = entry.target
+        console.log(img.dataset, '◀◀◀img.dataset')
+        let src = img.dataset.src
+        if (src) {
+          img.src = src
+          img.removeAttribute('data-src')
+        }
+        // 解除观察
+        self.unobserve(entry.target)
+      }
+    })
+  }, config)
+  
+  imgs.forEach((image) => {
+    console.log(image, '◀◀◀image')
+    observer.observe(image)
+  })
+</script>
+</html>

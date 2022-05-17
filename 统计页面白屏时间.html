@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+<script>
+  //拿到Performance并且初始化一些参数
+  let timing = performance.timing,
+    start = timing.navigationStart,
+    dnsTime = 0,
+    tcpTime = 0,
+    firstPaintTime = 0,
+    domRenderTime = 0,
+    loadTime = 0
+  //根据提供的api和属性，拿到对应的时间
+  dnsTime = timing.domainLookupEnd - timing.domainLookupStart
+  tcpTime = timing.connectEnd - timing.connectStart
+  firstPaintTime = timing.responseStart - start
+  domRenderTime = timing.domContentLoadedEventEnd - start
+  loadTime = timing.loadEventEnd - start
+  
+  console.log('DNS解析时间:', dnsTime,
+    '\nTCP建立时间:', tcpTime,
+    '\n首屏时间:', firstPaintTime,
+    '\ndom渲染完成时间:', domRenderTime,
+    '\n页面onload时间:', loadTime)
+</script>
+</body>
+</html>

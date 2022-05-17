@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <style>
+    body {
+      height: 300vh;
+    }
+    
+    .scrollerFooter {
+      /*margin-top: 200px;*/
+      background-color: #BFA;
+      width: 100%;
+      height: 500px;
+    }
+  </style>
+</head>
+<body>
+<div class="scrollerFooter"></div>
+</body>
+<script>
+  const box = document.querySelector('.scrollerFooter')
+  const intersectionObserver = new IntersectionObserver(function (entries) {
+    console.log(entries, '◀◀◀entries')
+    // 如果不可见，就返回
+    if (entries[0].intersectionRatio <= 0) {
+      let temHeight = Number(getComputedStyle(box).height.replace('px', ''))
+      console.log(temHeight)
+      box.style.height = temHeight + 100 + 'px'
+      console.log('加载更多')
+    }
+  })
+  
+  // 开始观察
+  intersectionObserver.observe(box)
+</script>
+</html>
